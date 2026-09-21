@@ -585,10 +585,14 @@ function closeLightbox() { document.getElementById('lightbox').classList.remove(
 // Back button closes lightbox instead of leaving the page
 window.addEventListener('popstate', function() {
   var lb = document.getElementById('lightbox');
-  if (lb && lb.classList.contains('active')) {
+  if (lb && (lb.classList.contains('active') || lb.classList.contains('open'))) {
     lb.classList.remove('active');
+    lb.classList.remove('open');
   }
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
 });
+
 function lbNext() { lbIdx = (lbIdx + 1) % lbImgs.length; document.getElementById('lb-img').src = lbImgs[lbIdx]; }
 function lbPrev() { lbIdx = (lbIdx - 1 + lbImgs.length) % lbImgs.length; document.getElementById('lb-img').src = lbImgs[lbIdx]; }
 
