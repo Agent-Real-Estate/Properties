@@ -600,13 +600,6 @@ body {
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDFK6BNLH3">
-// Back button closes lightbox instead of leaving the page
-window.addEventListener('popstate', function() {
-  var lb = document.getElementById('lightbox');
-  if (lb && lb.classList.contains('active')) {
-    lb.classList.remove('active');
-  }
-});
 </script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1002,6 +995,13 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
+// Back button closes lightbox instead of leaving the page
+window.addEventListener('popstate', function() {
+  var lb = document.getElementById('lightbox');
+  if (lb && lb.classList.contains('active')) {
+    lb.classList.remove('active');
+  }
+});
 function lbNext() {
   lbIdx = (lbIdx + 1) % lbImgs.length;
   openLightbox(lbIdx);
